@@ -1,7 +1,7 @@
 #!/bin/bash
 
 # Discord Webhook URL
-DISCORD_WEBHOOK_URL="https://discord.com/api/webhooks/1328727445997879357/EKwM6ThwPYi8OqWdLOqoZcskpjEubJDquWYgBgMuNjV5HZr5ENNIV1-lWQK8d9h_nLI8"
+DISCORD_WEBHOOK_URL="https://discord.com/api/webhooks/1328853345221345281/fSvNvvOsGMd_74vX00yQCyP1EN-_wjhUJfe7NrZoTl1-0XhRekeTIMO5dwG0w2dx3i1N"
 
 # Kullanıcıdan bağlı mail adresini al
 read -p "Sunucunun bağlı olduğu mail adresini girin: " SERVER_MAIL
