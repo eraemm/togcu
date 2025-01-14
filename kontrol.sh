@@ -6,21 +6,8 @@ DISCORD_WEBHOOK_URL="https://discord.com/api/webhooks/1328727445997879357/EKwM6T
 # Kullanıcıdan bağlı mail adresini al
 read -p "Sunucunun bağlı olduğu mail adresini girin: " SERVER_MAIL
 
-# Sunucu adı için sayaç dosyası
-COUNTER_FILE="efsane_counter.txt"
-
-# Sayaç dosyası yoksa başlat
-if [[ ! -f "$COUNTER_FILE" ]]; then
-  echo 1 > "$COUNTER_FILE"
-fi
-
-# Sayaçtan sunucu adı oluştur
-COUNTER=$(cat "$COUNTER_FILE")
-SERVER_NAME="efsane$COUNTER"
-
-# Sayaç güncelle
-NEXT_COUNTER=$((COUNTER + 1))
-echo "$NEXT_COUNTER" > "$COUNTER_FILE"
+# Sunucu IP adresini al
+SERVER_IP=$(hostname -I | awk '{print $1}')
 
 # Kontrol edilecek IP veya hostname
 SERVER_ADDRESS="bench.tigpool.com"
@@ -36,9 +23,9 @@ send_discord_message() {
 # Sunucu kontrolü
 check_server_status() {
   if ping -c 1 "$SERVER_ADDRESS" &> /dev/null; then
-    send_discord_message "✅ Sunucu $SERVER_ADDRESS aktif. Bağlı mail: $SERVER_MAIL $SERVER_NAME aktif."
+    send_discord_message "✅ Sunucu $SERVER_ADDRESS aktif. Bağlı mail: $SERVER_MAIL. IP: $SERVER_IP"
   else
-    send_discord_message "❌ Sunucu $SERVER_ADDRESS erişilemez! Bağlı mail: $SERVER_MAIL $SERVER_NAME pasif."
+    send_discord_message "❌ Sunucu $SERVER_ADDRESS erişilemez! Bağlı mail: $SERVER_MAIL. IP: $SERVER_IP"
   fi
 }
 
